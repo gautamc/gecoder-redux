@@ -1,6 +1,11 @@
 = gecoder-redux
 
-Description goes here.
+I wanted to run gecoder with ruby 1.9 and with the latest version of gecode.
+Hence, extracted out the relevant code out of the gecoder ruby 1.9 branch, into this gem.
+Right now, I need to manually install gecode-2.2.0 and then make sure ldconfig knows abt its libs.
+Hoping to update this gem to work with gecode-3.7.1.
+
+http://www.gecode.org/download/gecode-2.2.0.tar.gz
 
 == Contributing to gecoder-redux
  
