@@ -1,0 +1,14 @@
+//-*-c++-*-
+// Template for a variable arguments function call
+  bool ok = false;
+  
+  switch(argc) {
+!calls!
+  default: ok = false; break;
+  }
+  
+  if ( !ok )
+  {
+	rb_raise(rb_eArgError, "Mandatory parameters missing");
+	return Qnil;
+  }

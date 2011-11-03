@@ -1,0 +1,9 @@
+//-*-c++-*-
+// Template for the init function snippet registering a method.
+// Note that in the case of a method, !parent_varname! would be a
+// synonim for !class_varname!.
+
+  rb_define_method(r!parent_varname!, "!function_bindname!",
+    RUBY_METHOD_FUNC(!function_varname!), !function_paramcount!);
+
+  !function_aliases!

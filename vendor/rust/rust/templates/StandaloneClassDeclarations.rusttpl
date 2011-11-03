@@ -1,0 +1,7 @@
+//-*-c++-*-
+
+typedef std::map<VALUE, !c_class_name!*> T!class_ptrmap!;
+extern T!class_ptrmap! !class_ptrmap!;
+static void !class_varname!_free(void *p);
+static void !class_varname!_mark(void *p);
+static void !class_varname!_free_map_entry(void *p);

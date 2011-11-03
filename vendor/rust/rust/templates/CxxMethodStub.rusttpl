@@ -1,0 +1,12 @@
+//-*-c++-*-
+// Template of a C++ Method stub, the function used to convert the
+// parameters from Ruby objects to C++, and then call the real C++ function.
+
+!function_prototype! {
+  !c_class_name!* tmp = ruby2!class_varcname!Ptr(self);
+  if ( ! tmp ) return Qnil;
+
+  // The exception is thrown already by ruby2*
+
+  !function_call!
+}

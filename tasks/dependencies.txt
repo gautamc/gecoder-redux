@@ -1,0 +1,23 @@
+Doing the full "release" task requires a number of gems:
+
+# To run the Rake scripts.
+rake
+
+# To generate the website. Note that RedCloth 4.0.3 does not work so well
+# with the website at the time of writing, so use 3.0.4 .
+webgen
+coderay
+
+# To run the specs and produce a report for the website.
+rspec
+rcov
+
+# To release files to RubyForge.
+meta_project
+rubyforge
+
+
+
+To precompile the Windows gem you need to set up a cross-compilation 
+environment. See the following notes for instructions:
+http://rubyforge.org/pipermail/gecoder-devel/2008-January/000039.html

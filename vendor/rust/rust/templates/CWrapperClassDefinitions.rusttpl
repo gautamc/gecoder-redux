@@ -1,0 +1,64 @@
+//-*-c++-*-
+
+VALUE r!class_varname!;
+T!class_ptrmap! !class_ptrmap!;
+
+!c_class_name!* ruby2!class_varcname!Ptr(VALUE rval) {
+   !c_class_name!* ptr;
+   Data_Get_Struct(rval, !c_class_name!, ptr);
+
+   if ( ptr ) return reinterpret_cast< !c_class_name!* >(ptr);
+
+   T!class_ptrmap!::iterator it = !class_ptrmap!.find(rval);
+
+   if ( it == !class_ptrmap!.end() ) {
+      rb_raise(rb_eRuntimeError, "Unable to find !c_class_name! instance for value %x (type %d)\\n", rval, TYPE(rval));
+      return NULL;
+   }
+
+   return reinterpret_cast< !c_class_name!* >((*it).second);
+}
+
+
+!c_class_name!& ruby2!class_varcname!Ptr(VALUE rval) {
+  return *ruby2!class_varcname!Ptr(rval);
+}
+
+
+VALUE cxx2ruby(!c_class_name!* instance) {
+  if ( instance == NULL ) return Qnil;
+
+  T!class_ptrmap!::iterator it, eend = !class_ptrmap!.end();
+
+  for(it = !class_ptrmap!.begin(); it != eend; it++)
+     if ( (*it).second == (!c_class_name!*)instance ) break;
+
+   if ( it != !class_ptrmap!.end() )
+      return (*it).first;
+   else {
+      VALUE klass = r!class_varname!;
+
+      VALUE rval = Data_Wrap_Struct(klass, 0, 0, (void*)instance);
+      !class_ptrmap![rval] = instance;
+
+#ifdef DEBUG      
+      fprintf(stderr, "rust: wrapping instance %p in value %x (type %d)\\n", instance, rval, TYPE(rval));
+#endif
+
+      return rval;
+   }
+}
+
+static VALUE !class_varname!_alloc(VALUE self) {
+   return Data_Wrap_Struct(self, 0, !class_free_function!, 0);
+}
+
+static void !class_varname!_free(void *p) {
+  T!class_ptrmap!::iterator it, eend = !class_ptrmap!.end();
+  for(it = !class_ptrmap!.begin(); it != eend; it++)
+     if ( (*it).second == (!c_class_name!*)p ) {
+        !class_ptrmap!.erase(it); break;
+     }
+
+  !cleanup_functions!;
+}

@@ -1,0 +1,116 @@
+find_library: checking for main() in -lgecodesupport... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for main() in -lgecodekernel... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic    -lgecodesupport  -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodekernel -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for main() in -lgecodeint... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic    -lgecodekernel -lgecodesupport  -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodeint -lgecodekernel -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for main() in -lgecodeset... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic    -lgecodeint -lgecodekernel -lgecodesupport  -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodeset -lgecodeint -lgecodekernel -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for main() in -lgecodesearch... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic    -lgecodeset -lgecodeint -lgecodekernel -lgecodesupport  -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodesearch -lgecodeset -lgecodeint -lgecodekernel -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_library: checking for main() in -lgecodeminimodel... -------------------- yes
+
+"gcc -o conftest -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64   -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC conftest.c  -L. -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -Wl,-R/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L.  -rdynamic -Wl,-export-dynamic    -lgecodesearch -lgecodeset -lgecodeint -lgecodekernel -lgecodesupport  -Wl,-R -Wl,/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -L/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/lib -lruby-static -lgecodeminimodel -lgecodesearch -lgecodeset -lgecodeint -lgecodekernel -lgecodesupport  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+find_header: checking for rust_conversions.hh in /home/mrblue/src/gecoder-redux/vendor/rust/include... -------------------- yes
+
+"gcc -E -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I. -I/home/mrblue/src/gecoder-redux/vendor/rust/include -I/home/mrblue/src/gecoder-redux/ext  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <rust_conversions.hh>
+/* end */
+
+--------------------
+
+find_header: checking for rust_checks.hh in /home/mrblue/src/gecoder-redux/vendor/rust/include... -------------------- yes
+
+"gcc -E -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/i686-linux -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1/ruby/backward -I/home/mrblue/.rvm/rubies/ruby-1.9.2-p180/include/ruby-1.9.1 -I. -I/home/mrblue/src/gecoder-redux/vendor/rust/include -I/home/mrblue/src/gecoder-redux/ext  -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <rust_checks.hh>
+/* end */
+
+--------------------
+

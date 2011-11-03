@@ -1,0 +1,5 @@
+//-*-c++-*-
+// Template for the init function snipped registering an alias for a
+// function or a method.
+
+  rb_define_alias(r!parent_varname!, "!function_alias!", "!function_bindname!");

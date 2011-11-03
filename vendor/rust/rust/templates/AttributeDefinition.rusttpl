@@ -1,0 +1,17 @@
+//-*-c++-*-
+// Template of a generic C function call
+
+VALUE set!parent_varname!!attribute_bindname!(VALUE self, VALUE val) {
+  !c_class_name!* tmp = ruby2!class_varcname!Ptr(self);
+  if ( ! tmp ) return Qnil;
+  
+  tmp->!attribute_name! = ruby2!attribute_convert_name!(val);
+  return Qnil;
+}
+
+VALUE get!parent_varname!!attribute_bindname!(VALUE self) {
+  !c_class_name!* tmp = ruby2!class_varcname!Ptr(self);
+  if ( ! tmp ) return Qnil;
+  
+  return cxx2ruby(static_cast<!attribute_type!>(tmp->!attribute_name!));
+}

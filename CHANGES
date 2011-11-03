@@ -1,0 +1,152 @@
+== Next version
+
+* Added the :time_limit to Gecode#solve! which can be used to limit the amount of time that the solver is allowed to search for a solution.
+
+== Version 1.0.0
+This release represents a commitment to the current syntax.
+
+* No changes apart from improving documentation.
+
+== Version 0.9.1
+This release changes the preferred way of defining a model to including Gecode::Mixin (a mixin) rather than inheriting from Gecode::Model. The backend has also been updated to fix some rare bugs.
+
+* Added Gecode::Mixin which can be mixed in rather than inheriting from Gecode::Model. Thanks to Adam Rose for the suggestion.
+* Updated the backend to Gecode 2.2.0. See http://www.gecode.org/gecode-doc-latest/PageChanges_2_2_0.html for a list of changes.
+
+== Version 0.9.0
+This release adds a generous amount of sugar designed to cut down on often 
+repeated code. It also adds the ability to freely combine constraints
+without needing temporary variables.
+
+* Variables that should be accessible from outside the model can now easily be created by calling "<variable_name>_is_a <variable>" where "<variable_name>" is the desired name of the variable and "<variable>" is the variable (e.g. "int_var(17)"). Take a look at the examples to see it in action.
+* Gecode.solve, Gecode.maximize and Gecode.minimize can now be used to solve a problem without first having to explicitly create a class for the model.
+* An exception (Gecode::NoSolutionError) is now thrown if a solution can not be found when using Model#solve!, Model#minimize!, Model#maximize! and Model#optimize! (rather than returning nil). This change breaks backwards compatibility. If you feel that this is a bad change then please tell the mailing list.
+* The offset option to the distinct constraint is now given as "int_enum.must_be.distinct(:offset => offsets)" rather than the previous "int_enum.with_offsets(offsets).must_be.distinct".
+* Complex combinations of several constraints such as "(set1.size + set2.size).must > int.abs - 3" can now be used. The underlying code has been changed quite a bit, but it should remain backwards compatible except for above mentioned exception. The change also brings about some changed terminology, which mostly aims to remove the concept of "composite constraints" and replace them with the more general "operands" (see the documentation for further details).
+* [#21578] Fixed a bug that caused options given to the boolean "false" domain constraint to not be processed.
+* [#21579] Fixed a bug that caused the integer enumeration equality constraint to not work at all (threw an exception).
+* [#21580] Fixed a bug that caused ranges that use three dots to not be correctly interpreted by the negated integer domain constraint.
+* [#21581] Fixed a bug that caused the abs constraint to prune away valid solutions in some cases.
+
+== Version 0.8.3 
+This release adds regular expression constraints, the last channel
+constraint and various minor convenience improvements. It also fixes a
+rather serious bug that occurs when using the latest patchlevels of Ruby
+1.8.6. 
+
+* [#20888] Fixed a GC bug causing problems with Ruby 1.8.6 at patchlevels around 230.
+* Boolean constraints can no longer be specified using the form "bool.must == true". Only the "bool.must_be.true" form can now be used.
+* Added constants in Model that contain the limits of the variables' domains.
+* The domain when construction arrays and matrices of int variables now default to the same as when creating single variables (the largest possible domain).
+* Model#branch_on now accepts single variables as well as enums.
+* Added channel constraints between single set variables and enumerations of boolean variables.
+* Added integer and boolean regular expression constraints. Thanks goes to Eivind Eklund for providing the idea for the syntax used to specify the regular expressions.
+
+== Version 0.8.2
+This release adds search statistics along with some new arithmetic constraints 
+and channel constraints between boolean and integer variables.
+
+* Wrapping an enumerable that is already wrapped is no longer allowed.
+* Added search statistics.
+* Added squared value and square root constraints.
+* Added channel constraints between single integer variables and boolean variables.
+* Added channel constraints between enumerations of boolean variables and single integer variables.
+
+== Version 0.8.1
+This release adds tuple constraints along with a couple of minor features. It 
+also fixes a bug introduced in the previous version.
+
+* [#19435] Fixed a bug causing inconsistencies during BAB-search. The bug stopped the send+more=money example from working correctly.
+* Fixed the "raw_bindings" and "sudoku-set" examples, which were broken by the 0.8.0 release.
+* Integers can now be used to specify singleton lower and upper bounds when creating set variables. 
+* Added convenience methods Model#maximize! and Model#minimize! for optimizing single variables.
+* Added tuple constraints for enumerations of integer and boolean variables.
+
+== Version 0.8.0
+This release makes the jump from using Gecode 1.3.1 to using Gecode 2.1.1 . 
+The following changes have been made to the interface as a result of the jump.
+
+* Removed the distinct constraint for sets.
+* Added the propagation kind option to the non-set constraints.
+
+== Version 0.7.1
+This release adds boolean linear constraints.
+
+* Set domain constraints now checks illegal parameters when it's added (rather than when the search begins).
+* Added boolean linear constraint.
+
+== Version 0.7.0
+This release adds the set selection and operation constraints.
+
+* Added set selection constraints (set array access, select union, select intersection (optionally with specified universe) and select disjoint).
+* Added set operation constraints (union, minus, disjoint_union and intersection) on pairs of set variables or set constants with variable or constant right hand side.
+* Added set operation constraints on enumerations of sets.
+
+== Version 0.6.1
+This release fixes various bugs introduced in 0.6.0 and changes the way that
+int variable domains are specified (breaking backward-compatibility).
+
+* The domain for int variables can no longer be specified as several individual elements, it has to be specified as either a single element, a range or another enumeration.
+* Fixed a bug with set cardinality, min and max constraints using composite sugar.
+* Variables can now be created inside the optimization block.
+
+== Version 0.6.0
+This release adds most of the remaining set constraints. It also makes 
+backward-compatibility breaking changes to the way that properties of variables
+are accessed.
+
+* Added channel constraints involving set variables.
+* Added set min and max constraints.
+* Added set sum constraints (optionally weighted or substituted).
+* Added include (match) constraint for sets.
+* Added distinct constraints (distinct and at most one) for sets.
+* Added branch and bound search (optimization search). It's quite shaky at the moment though.
+* Assigned values of variables are now always accessed using #value instead of the various previous methods. The methods for extracting information from set variables have been changed and renamed.
+* Enumerations containing variables now provide a convenience method #values which returns an array of the enum's values.
+
+== Version 0.5.0
+This release adds set variables and some of their constraints, along with the 
+last of the boolean constraints.
+
+* Added exclusive or and implication.
+* Added conjunction and disjunction for boolean enumerations.
+* Added set variables. They are created using Model{#set_var, #set_var_array, #set_var_matrix}.
+* Added domain constraints for set variables.
+* Added relation constraints for set variables.
+* Added set cardinality constraints.
+
+== Version 0.4.0
+This release adds most of the integer variable constraints supported by Gecode.
+
+* [#11861] Fixed a bug stopping the creation of int variables with non-range domains.
+* Added domain constraints for int variables.
+* Added equality constraint for int enums.
+* Matrices of integer and boolean variables can now be created using Model#int_var_matrix Model#bool_var_matrix.
+* Added channel constraint for int enums.
+* Added element constraints (variable array access).
+* Added count constraints.
+* Added sortedness constraints.
+* Added arithmetic constraints (min, max, abs and variable multiplication).
+
+== Version 0.3.0
+This release fleshes out the existing constraints with things such as 
+reification and adds boolean variables and their basic constraints.
+
+* The constructor of Gecode::Model no longer has to be called by classes inheriting from it.
+* Added Model#reset! which resets a model after search.
+* Added Model#solution which passes the first solution to a block and returns the result of that block.
+* Added Model#each_solution which iterates over each solution.
+* Added boolean variables. They are created using Model#bool_var and Model#bool_var_array .
+* Added two options to constraints: propagation strength and reification variable.
+* Linear and simple relation constraints can now also be specified using #equal, #equal_to, #greater, #greater_than,... in addition to comparison operators.
+* Added distinct with offsets.
+* Simple relation constraints can now be used to specify relations between two variables.
+* Added basic boolean domain constraints along with conjunction and disjunction.
+* Added syntactic sugar for combining reifiable constraints with | and &.
+
+== Version 0.2.0
+This is the first release of Gecode/R, a Ruby interface to Gecode.
+
+* Added support for finite domain integers.
+* Added some basic relation, linear and distinct constraints.
+* Added the basis needed to model problems and find the first solution.

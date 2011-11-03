@@ -16,9 +16,9 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "gecoder-redux"
   gem.homepage = "http://github.com/gautamc/gecoder-redux"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.license = "LGPL"
+  gem.summary = %Q{A fork of gecoder for ruby 1.9.1}
+  gem.description = %Q{A fork of gecoder for ruby 1.9.1}
   gem.email = "gautam.chekuri@gmail.com"
   gem.authors = ["gautamc"]
   # dependencies defined in Gemfile

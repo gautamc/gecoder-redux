@@ -1,0 +1,24 @@
+//-*-c++-*-
+// General template for the header file (.hh) of the bindings.
+// This is the base that's recursively expanded to create the actual
+// header file.
+//
+// Please note that the ruby header and the C header files coming
+// from the bound library are included with C linkage rules, while
+// the rest of the header follows C++ linkage rules.
+
+extern "C" {
+  #include <ruby.h>
+  !c_includes!
+}
+
+!cxx_includes!
+
+/* This is for the ptrMap */
+#include <map>
+
+namespace Rust_!bindings_name! {
+
+!modules_declaration!
+
+}

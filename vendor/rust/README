@@ -1,0 +1,28 @@
+When I wanted to write a GUI tagger for KDE using Korundum (KDE Ruby
+bindings), I discovered to my sadness that most of the tagging
+extensions for Ruby were simple bindings for the C interface of the
+most common TagLib library (that is written in C++ instead); writing
+bindings for the C++ interface was quite a complex task, and boring as
+it was to copy and paste the same code over and over.
+
+For this reason I started first writing a simple extensions generator
+that used a YAML description of the namespaces and the classes to
+write bindings for. This method worked fine for what I was working on
+(RubyTag++), and also allowed me to write quite quickly some Ruby
+bindings for Hunspell too.
+
+Unfortunately this generator was not adaptable enough to write
+bindings for C libraries that used some object oriented interfaces,
+and was a mess to extend to provide bindings more suitable to some
+different cases than the ones I've already used the script for.
+
+For this reason I've started working on Rust: a more flexible
+extensions builder, that allowed to bind even C libraries by faking
+some classes on Ruby (although I haven't implemented this yet).
+
+Hopefully in the future Rust can be used to easily produce Ruby
+bindings for a number of libraries that currently aren't available at
+all.
+
+To contact me, send me patches or comments, just write to
+<flameeyes@gmail.com> .

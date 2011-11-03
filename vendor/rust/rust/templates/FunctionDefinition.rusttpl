@@ -1,0 +1,9 @@
+//-*-c++-*-
+// Template of a generic C function call
+
+!function_prototype! {
+  !function_call!
+  
+  rb_raise(rb_eArgError, "Mandatory parameters missing"); // FIXME
+  return Qnil; 
+}

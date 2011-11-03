@@ -1,0 +1,21 @@
+//-*-c++-*-
+// Template of a C++ Constructor stub, the function used to convert the
+// parameters from Ruby objects to C++, and then call the real C++ constructor.
+
+!function_prototype! {
+  !c_class_name!* tmp;
+  Data_Get_Struct(self, !c_class_name!, tmp);
+
+  /* The exception is thrown already by ruby2* if not found */
+
+  !function_call!;
+
+  DATA_PTR(self) = tmp;
+  !class_ptrmap![self] = tmp;
+
+#ifdef DEBUG
+  fprintf(stderr, "rust: creating new instance of !c_class_name! (%p) with value %x\n", tmp, self);
+#endif
+
+  return self;
+}

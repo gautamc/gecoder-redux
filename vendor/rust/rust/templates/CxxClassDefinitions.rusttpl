@@ -1,0 +1,100 @@
+//-*-c++-*-
+
+VALUE r!class_varname!;
+
+bool is_!class_varname!(VALUE val)
+{
+  if ( isType(val, T_DATA) )
+  {
+    !c_class_name! *obj = 0;
+    
+    Data_Get_Struct(val, !c_class_name!, obj);
+    
+    if( obj == 0 ) return false;
+    
+    return rb_obj_is_kind_of(val, r!class_varname!) == Qtrue;
+  }
+  
+  return false;
+}
+
+!c_class_name!* ruby2!class_varcname!Ptr(VALUE rval, int argn) {
+   if(rval == Qnil || rval == 0) return 0;
+
+   if( ! is_!class_varname!(rval) )
+   {
+     VALUE klass = rb_funcall(rval, rb_intern("class"), 0);
+     
+     if( argn > 0)
+       rb_raise(rb_eArgError, "Expecting !c_class_name! given %s for argument %d", RSTRING_PTR(RSTRING(rb_funcall(klass, rb_intern("to_s"), 0))), argn);
+     else
+		rb_raise(rb_eArgError, "Expecting !c_class_name! given %s", RSTRING_PTR(RSTRING(rb_funcall(klass, rb_intern("to_s"), 0))), argn);
+     return 0;
+   }
+   
+   !c_class_name!* ptr;
+   Data_Get_Struct(rval, !c_class_name!, ptr);
+
+   if ( ptr ) return dynamic_cast< !c_class_name!* >(ptr);
+
+   T!class_ptrmap!::iterator it = !class_ptrmap!.find(rval);
+
+   if ( it == !class_ptrmap!.end() ) {
+      rb_raise(rb_eRuntimeError, "Unable to find !c_class_name! instance for value %x (type %d)\\n", rval, TYPE(rval));
+      return NULL;
+   }
+
+   return dynamic_cast< !c_class_name!* >((*it).second);
+}
+
+!c_class_name!& ruby2!class_varcname!(VALUE rval, int argn) {
+  return *ruby2!class_varcname!Ptr(rval, argn);
+}
+
+VALUE cxx2ruby(!c_class_name!* instance, bool free, bool create_new_if_needed) {
+  if ( instance == NULL ) return Qnil;
+
+  T!class_ptrmap!::iterator it, eend = !class_ptrmap!.end();
+
+#ifdef DEBUG      
+  fprintf(stderr, "rust: searching for !c_class_name! %p\n", instance);
+#endif
+
+  for(it = !class_ptrmap!.begin(); it != eend; it++)
+     if ( (*it).second == (!c_class_name!*)instance ) break;
+
+   if ( it != !class_ptrmap!.end() )
+      return (*it).first;
+   else {
+#ifdef DEBUG      
+      fprintf(stderr, "rust: failed to find match for %p\n", instance);
+#endif
+      if(!create_new_if_needed) return Qnil;
+   
+      VALUE klass = r!class_varname!;
+
+!test_children!
+      
+      VALUE rval;
+      if( !free )
+      {
+        rval = Data_Wrap_Struct(klass, 0, !class_map_free_function!, (void*)instance);
+      }
+      else
+      {
+        rval = Data_Wrap_Struct(klass, !class_mark_function!, !class_free_function!, (void*)instance);
+      }
+      
+      !class_ptrmap![rval] = instance;
+
+#ifdef DEBUG      
+      fprintf(stderr, "rust: wrapping instance %p in value %x (type %d)\\n", instance, rval, TYPE(rval));
+#endif
+
+      return rval;
+   }
+}
+
+static VALUE !class_varname!_alloc(VALUE self) {
+   return Data_Wrap_Struct(self, !class_mark_function!, !class_free_function!, 0);
+}

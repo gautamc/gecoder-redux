@@ -1,0 +1,46 @@
+//-*-c++-*-
+// General template for the unit file (.cc) of the bindings.
+// This is the base that's recursively expanded to create the actual
+// header file.
+//
+// Please note that the visibility is set to the Init function only
+// if the build processo found it, so that all the other functions
+// and types are actually considered hidden, and thus not exported by
+// the extension. Unfortunately GCC's libstdc++ does not correctly
+// hide all of its symbols yet.
+
+// This is needed here because I need to put the rust_conversions.hh
+// include inside these bindings' namespace.
+#include <string>
+
+#include "!bindings_name!.hh"
+
+#ifdef DEBUG
+#include <stdio.h> /* Used for fprintf */
+#endif
+
+namespace Rust_!bindings_name! {
+
+#include <rust_conversions.hh>
+#include <rust_checks.hh>
+
+!custom_definition!
+
+!modules_definition!
+
+}
+
+using namespace Rust_!bindings_name!;
+
+extern "C" {
+
+#ifdef HAVE_VISIBILITY
+void Init_!bindings_name!() __attribute__((visibility("default")));
+#endif
+
+void Init_!bindings_name!() {
+!modules_initialization!
+!custom_initialization!
+} /* Init_!bindings_name! */
+
+}

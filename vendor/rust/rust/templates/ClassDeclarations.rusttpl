@@ -1,0 +1,7 @@
+//-*-c++-*-
+
+extern VALUE r!class_varname!;
+VALUE cxx2ruby(!c_class_name!* instance, bool free = false, bool create_new_if_needed = true);
+bool is_!class_varname!(VALUE val);
+!c_class_name!* ruby2!class_varcname!Ptr(VALUE rval, int argn = -1);
+!c_class_name!& ruby2!class_varcname!(VALUE rval, int argn = -1);
