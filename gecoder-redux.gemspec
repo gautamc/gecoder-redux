@@ -55,6 +55,7 @@ Gem::Specification.new do |s|
     "ext/vararray.cpp",
     "ext/vararray.h",
     "ext/vararray.o",
+    "gecoder-redux.gemspec",
     "lib/gecode.so",
     "lib/gecoder-redux.rb",
     "lib/gecoder.rb",
